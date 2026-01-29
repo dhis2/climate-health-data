@@ -26,7 +26,7 @@ The following columns have special meaning to Chap:
 
 All other columns are interpreted by Chap as **covariates / features** (e.g. temperature, precipitation, vegetation indices).
 
-See the [Chap csv data format documentation](https://chap.dhis2.org/chap-modeling-platform/external_models/data_formats) for a full description.
+See the [Chap CSV data format documentation](https://chap.dhis2.org/chap-modeling-platform/external_models/data_formats) for a full description.
 
 ---
 
