@@ -2,7 +2,7 @@
 
 This repository contains **data only**. It does not include code or pipelines.
 
-The datasets here are **already harmonized** (e.g. derived from OpenDengue) and are published in a format that can be consumed directly by [Chap](https://chap.dhis2.org). See the [Chap evaluation workflow documentation](https://chap.dhis2.org/chap-modeling-platform/chap-cli/evaluation-workflow) for detailed information on how to use these CSV files in a Chap evaluation.
+The datasets here are **already harmonized** (e.g. derived from OpenDengue) and are published in a format that can be downloaded and consumed directly by [Chap](https://chap.dhis2.org). See the [Chap evaluation workflow documentation](https://chap.dhis2.org/chap-modeling-platform/chap-cli/evaluation-workflow) for detailed information on how to use these CSV files in a Chap evaluation.
 
 ---
 
