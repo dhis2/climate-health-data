@@ -1,0 +1,102 @@
+{
+  "dataset": {
+    "name": "CHAP Harmonized Dataset (LAO)",
+    "description": "Harmonized climate–health dataset for Laos.",
+    "country_iso3": "LAO",
+    "country_name": "Laos",
+    "admin_level": 1,
+    "temporal_resolution": "monthly",
+    "time_range": {
+      "start": "1998-01",
+      "end": "2010-12"
+    },
+    "primary_key": [
+      "location",
+      "time_period"
+    ],
+    "row_count": 2575,
+    "created_utc": "2026-02-09T16:47:59Z",
+    "output_csv": "adm1_monthly_1998-01_to_2010-12_CHAP.csv"
+  },
+  "fields": [
+    {
+      "name": "time_period",
+      "type": "string",
+      "unit": null,
+      "description": "Time bucket aligned across sources.",
+      "source": {
+        "provider": "Derived",
+        "notes": "Computed during temporal aggregation."
+      },
+      "format_by_resolution": {
+        "monthly": "YYYY-MM",
+        "weekly": "YYYY-[W]WW"
+      }
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "unit": null,
+      "description": "Stable admin unit identifier used as org_id.",
+      "source": {
+        "provider": "OCHA COD-AB / HDX (Laos)",
+        "url": "https://data.humdata.org/dataset/cod-ab-lao",
+        "id_field": "shapeISO"
+      }
+    },
+    {
+      "name": "location_name",
+      "type": "string",
+      "unit": null,
+      "description": "Admin unit name from boundary dataset.",
+      "source": {
+        "provider": "OCHA COD-AB / HDX (Laos)",
+        "url": "https://data.humdata.org/dataset/cod-ab-lao",
+        "name_field": "shapeName"
+      }
+    },
+    {
+      "name": "rainfall",
+      "type": "number",
+      "unit": "mm",
+      "description": "Total precipitation aggregated over the time bucket within the admin polygon.",
+      "source": {
+        "provider": "ERA5-Land (CDS)",
+        "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
+        "variable": "total_precipitation"
+      }
+    },
+    {
+      "name": "mean_temperature",
+      "type": "number",
+      "unit": "°C",
+      "description": "Mean 2m temperature aggregated over the time bucket within the admin polygon.",
+      "source": {
+        "provider": "ERA5-Land (CDS)",
+        "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
+        "variable": "2m_temperature"
+      }
+    },
+    {
+      "name": "disease_cases",
+      "type": "integer",
+      "unit": "cases",
+      "description": "Reported dengue cases aggregated to the time bucket and admin unit.",
+      "source": {
+        "provider": "OpenDengue",
+        "url": "https://opendengue.org/data.html"
+      }
+    },
+    {
+      "name": "population",
+      "type": "integer",
+      "unit": "persons",
+      "description": "Population estimate for the admin unit (static snapshot year applied to all time_periods).",
+      "source": {
+        "provider": "WorldPop",
+        "url": "https://www.worldpop.org/",
+        "snapshot_ref": 2020
+      }
+    }
+  ]
+}
