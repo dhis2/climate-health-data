@@ -16,7 +16,7 @@
     ],
     "row_count": 9612,
     "created_utc": "2026-02-09T22:29:57Z",
-    "output_csv": "adm1_monthly_1998-01_to_2010-12_CHAP.csv"
+    "output_csv": "chap_VNM_admin1_monthly.csv"
   },
   "fields": [
     {
