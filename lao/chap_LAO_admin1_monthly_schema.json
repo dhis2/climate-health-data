@@ -15,7 +15,7 @@
       "time_period"
     ],
     "row_count": 2575,
-    "created_utc": "2026-02-09T16:47:59Z",
+    "created_utc": "2026-02-11T10:39:32Z",
     "output_csv": "adm1_monthly_1998-01_to_2010-12_CHAP.csv"
   },
   "fields": [
@@ -75,6 +75,15 @@
         "provider": "ERA5-Land (CDS)",
         "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
         "variable": "2m_temperature"
+      }
+    },
+    {
+      "name": "mean_relative_humidity",
+      "type": "number",
+      "unit": "%",
+      "description": "Mean relative humidity at 2m height derived from ERA5-Land 2m temperature and 2m dewpoint temperature using the August–Roche–Magnus saturation vapor pressure formulation with constants (a=6.112 hPa, b=17.67, c=243.5 °C), applied to monthly-mean temperature and dewpoint, then aggregated to admin units.\n",
+      "source": {
+        "provider": "ERA5-Land (derived)"
       }
     },
     {
