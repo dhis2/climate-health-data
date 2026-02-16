@@ -5,6 +5,7 @@
     "country_iso3": "LAO",
     "country_name": "Laos",
     "admin_level": 1,
+    "admin_geojson_file": "LAO_ADM1.geojson",
     "temporal_resolution": "monthly",
     "time_range": {
       "start": "1998-01",
