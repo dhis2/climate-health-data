@@ -23,6 +23,7 @@ The following columns have special meaning to Chap:
 **Reserved but optional**
 
 - `population`
+- `location_name` - admin unit name from boundary dataset
 
 All other columns are interpreted by Chap as **covariates / features** (e.g. temperature, precipitation, vegetation indices).
 
