@@ -1,0 +1,111 @@
+{
+  "dataset": {
+    "name": "CHAP Harmonized Dataset (THA)",
+    "description": "Harmonized climate–health dataset for Thailand.",
+    "country_iso3": "THA",
+    "country_name": "Thailand",
+    "admin_level": 1,
+    "temporal_resolution": "monthly",
+    "time_range": {
+      "start": "1993-01",
+      "end": "2022-12"
+    },
+    "primary_key": [
+      "location",
+      "time_period"
+    ],
+    "row_count": 27720,
+    "created_utc": "2026-02-18T09:02:25Z",
+    "output_csv": "adm1_monthly_1993-01_to_2022-12_CHAP.csv"
+  },
+  "fields": [
+    {
+      "name": "time_period",
+      "type": "string",
+      "unit": null,
+      "description": "Time bucket aligned across sources.",
+      "source": {
+        "provider": "Derived"
+      },
+      "format_by_resolution": {
+        "monthly": "YYYY-MM"
+      }
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "unit": null,
+      "description": "Stable admin unit identifier used as org_id.",
+      "source": {
+        "provider": "OCHA COD-AB / HDX (Thailand)",
+        "url": "https://data.humdata.org/dataset/cod-ab-tha"
+      }
+    },
+    {
+      "name": "disease_cases",
+      "type": "integer",
+      "unit": "cases",
+      "description": "Reported dengue cases aggregated to the time bucket and admin unit.",
+      "source": {
+        "provider": "OpenDengue",
+        "url": "https://opendengue.org/data.html"
+      }
+    },
+    {
+      "name": "population",
+      "type": "integer",
+      "unit": "persons",
+      "description": "Population estimate for the admin unit derived from WorldPop annual population rasters for anchor years (2000, 2010, 2020). Annual values are linearly interpolated between anchors, backfilled before 2000 using 2000 values, and carried forward after 2020 using 2020 values. Annual estimates are expanded to monthly periods.\n",
+      "source": {
+        "provider": "WorldPop",
+        "url": "https://www.worldpop.org/",
+        "anchors": [
+          2000,
+          2010,
+          2020
+        ],
+        "interpolation_method": "linear",
+        "backfill_before": 2000,
+        "carry_after": 2020
+      }
+    },
+    {
+      "name": "location_name",
+      "type": "string",
+      "unit": null,
+      "description": "Admin unit name from boundary dataset.",
+      "source": {
+        "provider": "OCHA COD-AB / HDX (Thailand)"
+      }
+    },
+    {
+      "name": "rainfall",
+      "type": "number",
+      "unit": "mm",
+      "description": "Total precipitation aggregated over the time bucket within the admin polygon.",
+      "source": {
+        "provider": "ERA5-Land (CDS)",
+        "url": "https://cds.climate.copernicus.eu/"
+      }
+    },
+    {
+      "name": "mean_temperature",
+      "type": "number",
+      "unit": "°C",
+      "description": "Mean 2m temperature aggregated over the time bucket within the admin polygon.",
+      "source": {
+        "provider": "ERA5-Land (CDS)",
+        "url": "https://cds.climate.copernicus.eu/"
+      }
+    },
+    {
+      "name": "mean_relative_humidity",
+      "type": "number",
+      "unit": "%",
+      "description": "Mean relative humidity at 2m height derived from ERA5-Land 2m temperature and 2m dewpoint temperature using the August–Roche–Magnus saturation vapor pressure formulation with constants (a=6.112 hPa, b=17.67, c=243.5 °C), applied to monthly-mean temperature and dewpoint, then aggregated to admin units.\n",
+      "source": {
+        "provider": "ERA5-Land (derived)"
+      }
+    }
+  ]
+}
