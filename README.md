@@ -31,6 +31,12 @@ See the [Chap CSV data format documentation](https://chap.dhis2.org/chap-modelin
 
 ---
 
+## Admin boundary files
+
+Admin boundary GeoJSON files in this repository are static artifacts, but their filenames intentionally follow the related Chap dataset naming pattern (for example, `chap_LAO_admin1_monthly.geojson`). This is a compatibility constraint for the Chap team, so take care to preserve or explicitly coordinate this naming if these files are replaced or reorganized.
+
+---
+
 ## Temporal continuity
 
 Chap assumes a **global, rectangular spatiotemporal grid**:
