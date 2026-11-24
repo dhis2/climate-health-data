@@ -2,7 +2,9 @@
 
 This repository contains **data only**. It does not include code or pipelines.
 
-The datasets here are **already harmonized** (e.g. derived from OpenDengue) and are published in a format that can be downloaded and consumed directly by [Chap](https://chap.dhis2.org). See the [Chap evaluation workflow documentation](https://chap.dhis2.org/chap-modeling-platform/chap-cli/evaluation-workflow) for detailed information on how to use these CSV files in a Chap evaluation.
+The datasets here are **already harmonized** from sources such as OpenDengue and the published Malawi malaria series by Elling et al. They are published in a format that can be downloaded and consumed directly by [Chap](https://chap.dhis2.org). See the [Chap evaluation workflow documentation](https://chap.dhis2.org/chap-modeling-platform/chap-cli/evaluation-workflow) for detailed information on how to use these CSV files in a Chap evaluation.
+
+For the Malawi dataset's sources, licences, attribution and processing notes, see [mwi/README.md](mwi/README.md).
 
 ---
 
