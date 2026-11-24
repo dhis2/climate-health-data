@@ -1,0 +1,610 @@
+{
+  "dataset": {
+    "name": "Chap Malawi malaria with environmental covariates",
+    "description": "Monthly district outpatient malaria case counts from Elling et al., with population, weather, vegetation, land cover, surface water, terrain and ENSO covariates.",
+    "country_iso3": "MWI",
+    "country_name": "Malawi",
+    "admin_level": 2,
+    "admin_geojson_file": "chap_MWI_admin2_monthly.geojson",
+    "temporal_resolution": "monthly",
+    "time_range": {
+      "start": "2005-01",
+      "end": "2023-12"
+    },
+    "primary_key": [
+      "location",
+      "time_period"
+    ],
+    "row_count": 6156,
+    "location_count": 27,
+    "created_utc": "2026-11-24T13:16:23.076852+00:00",
+    "output_csv": "chap_MWI_admin2_monthly.csv",
+    "processing_reference": "https://github.com/edvinstava/open-geo-service/tree/2f77983086cb8f98f00fa24cbec17a05838e308b/examples/malawi_chap",
+    "source_citations": {
+      "health": "Elling et al. (2025), Malawi Malaria Incidence 2005–2023, https://doi.org/10.5281/zenodo.17161438. Related study: https://doi.org/10.1038/s43856-026-01681-9.",
+      "chirps": "Climate Hazards Center, CHIRPS version 3 (2025), https://doi.org/10.15780/G2JQ0P, accessed 2026-11-24. Funk et al. (2026), https://doi.org/10.1038/s41597-026-07096-4.",
+      "surface_water": "EC JRC/Google. Pekel et al. (2016), High-resolution mapping of global surface water and its long-term changes, https://doi.org/10.1038/nature20584.",
+      "vegetation": "MOD13A3.061, https://doi.org/10.5067/MODIS/MOD13A3.061.",
+      "land_cover": "MCD12Q1.061, https://doi.org/10.5067/MODIS/MCD12Q1.061."
+    }
+  },
+  "fields": [
+    {
+      "name": "time_period",
+      "type": "string",
+      "unit": null,
+      "description": "Calendar month in UTC, YYYY-MM.",
+      "source": {
+        "provider": "Derived"
+      }
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "unit": null,
+      "description": "Pinned geoBoundaries shapeID, equal to GeoJSON feature.id.",
+      "source": {
+        "provider": "NSO Malawi / OCHA ROSEA via geoBoundaries gbOpen",
+        "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/MWI/ADM2/geoBoundaries-MWI-ADM2_simplified.geojson",
+        "license": "CC-BY-3.0-IGO",
+        "version": "9469f09",
+        "boundary_year": 2020
+      }
+    },
+    {
+      "name": "disease_cases",
+      "type": "number",
+      "unit": "cases",
+      "description": "Processed malaria case count; fractional source values retained.",
+      "source": {
+        "provider": "Maxwell T. Elling et al.",
+        "url": "https://doi.org/10.5281/zenodo.17161438",
+        "license": "CC-BY-4.0",
+        "download_url": "https://zenodo.org/records/17161438/files/malawi_malaria_incidence_mte2025_2023-2025.csv?download=1"
+      }
+    },
+    {
+      "name": "population",
+      "type": "number",
+      "unit": "persons",
+      "description": "Overlap-weighted sum of annual people per pixel, repeated each month of that year.",
+      "source": {
+        "provider": "WorldPop, University of Southampton",
+        "license": "CC-BY-4.0",
+        "url": "https://www.worldpop.org/",
+        "products": {
+          "2005-2020": "Global_2000_2020_1km_UNadj",
+          "2021-2023": "Global2 R2025A UA v1, constrained, 1km"
+        }
+      }
+    },
+    {
+      "name": "location_name",
+      "type": "string",
+      "unit": null,
+      "description": "District name, matched using the authors' ID_1 lookup.",
+      "source": {
+        "provider": "NSO Malawi / OCHA ROSEA via geoBoundaries gbOpen",
+        "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/MWI/ADM2/geoBoundaries-MWI-ADM2_simplified.geojson",
+        "license": "CC-BY-3.0-IGO",
+        "version": "9469f09",
+        "boundary_year": 2020
+      }
+    },
+    {
+      "name": "rainfall",
+      "type": "number",
+      "unit": "mm",
+      "description": "District overlap-weighted mean of monthly total_precipitation_sum multiplied by 1000. No additional days-in-month multiplier.",
+      "source": {
+        "provider": "Copernicus Climate Change Service (C3S); monthly aggregation by Google Earth Engine",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "license": "Licence to Use Copernicus Products",
+        "license_url": "https://apps.ecmwf.int/datasets/licences/copernicus/",
+        "attribution": "Contains modified Copernicus Climate Change Service information (2005-2023)."
+      }
+    },
+    {
+      "name": "mean_temperature",
+      "type": "number",
+      "unit": "degC",
+      "description": "District overlap-weighted mean of monthly temperature_2m minus 273.15.",
+      "source": {
+        "provider": "Copernicus Climate Change Service (C3S); monthly aggregation by Google Earth Engine",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "license": "Licence to Use Copernicus Products",
+        "license_url": "https://apps.ecmwf.int/datasets/licences/copernicus/",
+        "attribution": "Contains modified Copernicus Climate Change Service information (2005-2023)."
+      }
+    },
+    {
+      "name": "mean_relative_humidity",
+      "type": "number",
+      "unit": "%",
+      "description": "Derived per grid cell from monthly T and Td (C): 100*exp(17.67*Td/(Td+243.5)-17.67*T/(T+243.5)), then overlap-weighted district mean. This is an approximation from monthly means, not a mean of hourly RH.",
+      "source": {
+        "provider": "Copernicus Climate Change Service (C3S); monthly aggregation by Google Earth Engine",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "license": "Licence to Use Copernicus Products",
+        "license_url": "https://apps.ecmwf.int/datasets/licences/copernicus/",
+        "attribution": "Contains modified Copernicus Climate Change Service information (2005-2023)."
+      }
+    },
+    {
+      "name": "rainfall_chirps3",
+      "type": "number",
+      "unit": "mm/month",
+      "description": "GeoService district mean CHIRPS3 rate multiplied by calendar days.",
+      "source": {
+        "provider": "UCSB CHC",
+        "url": "https://www.chc.ucsb.edu/data/chirps3",
+        "license": "CC-BY-4.0",
+        "data_source_id": "chirps3_precipitation_monthly"
+      }
+    },
+    {
+      "name": "monthly_min_temperature",
+      "type": "number",
+      "unit": "degC",
+      "description": "District mean of temperature_2m_min * 1 + (-273.15). Mean of pixel monthly hourly extremes, not mean daily minima/maxima.",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "monthly_max_temperature",
+      "type": "number",
+      "unit": "degC",
+      "description": "District mean of temperature_2m_max * 1 + (-273.15). Mean of pixel monthly hourly extremes, not mean daily minima/maxima.",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "mean_dewpoint_temperature",
+      "type": "number",
+      "unit": "degC",
+      "description": "District mean of dewpoint_temperature_2m * 1 + (-273.15).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "mean_soil_temperature_0_7cm",
+      "type": "number",
+      "unit": "degC",
+      "description": "District mean of soil_temperature_level_1 * 1 + (-273.15).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "soil_moisture_0_7cm",
+      "type": "number",
+      "unit": "m3/m3",
+      "description": "District mean of volumetric_soil_water_layer_1 * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "soil_moisture_7_28cm",
+      "type": "number",
+      "unit": "m3/m3",
+      "description": "District mean of volumetric_soil_water_layer_2 * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "soil_moisture_28_100cm",
+      "type": "number",
+      "unit": "m3/m3",
+      "description": "District mean of volumetric_soil_water_layer_3 * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "surface_runoff_mm",
+      "type": "number",
+      "unit": "mm/month",
+      "description": "District mean of surface_runoff_sum * 1000 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "evaporation_mm",
+      "type": "number",
+      "unit": "mm/month",
+      "description": "District mean of total_evaporation_sum * -1000 + (0). Positive is evaporation; negative is condensation.",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "solar_radiation_mj_m2",
+      "type": "number",
+      "unit": "MJ/m2/month",
+      "description": "District mean of surface_solar_radiation_downwards_sum * 1e-06 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "eastward_wind_10m",
+      "type": "number",
+      "unit": "m/s",
+      "description": "District mean of u_component_of_wind_10m * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "northward_wind_10m",
+      "type": "number",
+      "unit": "m/s",
+      "description": "District mean of v_component_of_wind_10m * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "leaf_area_index_low_vegetation",
+      "type": "number",
+      "unit": "m2/m2",
+      "description": "District mean of leaf_area_index_low_vegetation * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "leaf_area_index_high_vegetation",
+      "type": "number",
+      "unit": "m2/m2",
+      "description": "District mean of leaf_area_index_high_vegetation * 1 + (0).",
+      "source": {
+        "provider": "Copernicus / ECMWF",
+        "collection": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_MONTHLY_AGGR",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "ndvi",
+      "type": "number",
+      "unit": "1",
+      "description": "MOD13A3.061 monthly index * 0.0001; SummaryQA=0; valid scaled range -0.2 to 1.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MOD13A3",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13A3",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "evi",
+      "type": "number",
+      "unit": "1",
+      "description": "MOD13A3.061 monthly index * 0.0001; SummaryQA=0; valid scaled range -0.2 to 1.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MOD13A3",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13A3",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "vegetation_good_quality_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of source pixels with SummaryQA=0; diagnostic, not an environmental measurement.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MOD13A3",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13A3",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "forest_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [1, 2, 3, 4, 5]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "shrubland_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [6, 7]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "savanna_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [8, 9]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "grassland_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [10]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "wetland_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [11]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "cropland_or_mosaic_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [12, 14]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "urban_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [13]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "bare_land_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [16]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "landcover_water_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of classified pixels in IGBP classes [17]; repeated monthly.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "MODIS/061/MCD12Q1",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "seasonal_water_detected_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of the entire district grid detected as waterClass=2; unclassified pixels contribute no detections, not evidence of dry land. Read with water_classified_fraction; blank if no pixels are classified. Annual value repeated monthly. Original history through 2015; corrected v1.5 for 2016-2021; v1.5 Landsat Collection 2 for 2022-2023. Changes across versions may include processing artefacts.",
+      "source": {
+        "provider": "EC JRC / Google",
+        "collection": [
+          "JRC/GSW1_4/YearlyHistory",
+          "projects/global-surface-water/assets/GSW1_5/YearlyHistory_2016_2021",
+          "projects/global-surface-water/assets/GSW1_5/YearlyHistory_2022_2024"
+        ],
+        "url": "https://global-surface-water.appspot.com/download",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "permanent_water_detected_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of the entire district grid detected as waterClass=3; unclassified pixels contribute no detections, not evidence of dry land. Read with water_classified_fraction; blank if no pixels are classified. Annual value repeated monthly. Original history through 2015; corrected v1.5 for 2016-2021; v1.5 Landsat Collection 2 for 2022-2023. Changes across versions may include processing artefacts.",
+      "source": {
+        "provider": "EC JRC / Google",
+        "collection": [
+          "JRC/GSW1_4/YearlyHistory",
+          "projects/global-surface-water/assets/GSW1_5/YearlyHistory_2016_2021",
+          "projects/global-surface-water/assets/GSW1_5/YearlyHistory_2022_2024"
+        ],
+        "url": "https://global-surface-water.appspot.com/download",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "water_classified_fraction",
+      "type": "number",
+      "unit": "1",
+      "description": "Fraction of the district grid with a nonzero, unmasked waterClass; all other pixels count as unclassified. Coverage diagnostic, not water extent. Annual value repeated monthly. Original history through 2015; corrected v1.5 for 2016-2021; v1.5 Landsat Collection 2 for 2022-2023. Changes across versions may include processing artefacts.",
+      "source": {
+        "provider": "EC JRC / Google",
+        "collection": [
+          "JRC/GSW1_4/YearlyHistory",
+          "projects/global-surface-water/assets/GSW1_5/YearlyHistory_2016_2021",
+          "projects/global-surface-water/assets/GSW1_5/YearlyHistory_2022_2024"
+        ],
+        "url": "https://global-surface-water.appspot.com/download",
+        "license": "Copernicus terms; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "mean_elevation_m",
+      "type": "number",
+      "unit": "m",
+      "description": "Static district mean from SRTM (February 2000), repeated for all months.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "USGS/SRTMGL1_003",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/USGS_SRTMGL1_003",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "mean_slope_degrees",
+      "type": "number",
+      "unit": "degree",
+      "description": "Static district mean from SRTM (February 2000), repeated for all months.",
+      "source": {
+        "provider": "NASA / USGS",
+        "collection": "USGS/SRTMGL1_003",
+        "url": "https://developers.google.com/earth-engine/datasets/catalog/USGS_SRTMGL1_003",
+        "license": "NASA/USGS open data; attribution required",
+        "aggregation": "Earth Engine weighted mean on the original source grid; no bestEffort or coarsening"
+      }
+    },
+    {
+      "name": "nino34_anomaly",
+      "type": "number",
+      "unit": "degC",
+      "description": "Monthly ERSSTv5 Nino 3.4 anomaly, 1991-2020 reference; shared by all districts.",
+      "source": {
+        "provider": "NOAA CPC",
+        "url": "https://www.cpc.ncep.noaa.gov/data/indices/ersst5.nino.mth.91-20.ascii",
+        "license": "US government public data"
+      }
+    },
+    {
+      "name": "district_area_km2",
+      "type": "number",
+      "unit": "km2",
+      "description": "Area of the supplied district polygon in equal-area EPSG:6933, including inland water.",
+      "source": {
+        "provider": "Derived from the base bundle's geoBoundaries polygons"
+      }
+    },
+    {
+      "name": "population_density_km2",
+      "type": "number",
+      "unit": "people/km2",
+      "description": "Base bundle population divided by district_area_km2.",
+      "source": {
+        "provider": "Derived from the base bundle's WorldPop population and polygons"
+      }
+    }
+  ],
+  "limitations": [
+    "Likoma has no case series and is excluded; missing cases have not been replaced with zeros.",
+    "Source combines surveillance series and averages overlaps. Fractional cases are intentional.",
+    "The authors adjusted 2013-2014 for underreporting using relationships with Mozambique. Treat these years separately in benchmark sensitivity analysis.",
+    "A fixed 2020 boundary geography is applied to all years; historical boundary equivalence has not been independently established.",
+    "WorldPop changes product in 2021. The discontinuity may reflect methods as well as population changes.",
+    "Population sums cover valid WorldPop cells within the supplied polygons; coastline and boundary differences may prevent conservation of national totals.",
+    "OCS weights partial grid cells by polygon overlap (exactextract). Climate means are not population weighted.",
+    "TOTALPOP and CASERATE1000 from the health source are excluded: population uses WorldPop and outcome-derived case rates would leak the target.",
+    "Annual land/water cover is repeated monthly, not observed monthly. SRTM terrain is static from 2000.",
+    "JRC seasonal/permanent fractions count detections across the entire district grid. Read water_classified_fraction alongside them; missing or masked pixels are not evidence of dry land.",
+    "Read vegetation_good_quality_fraction with NDVI and EVI, and water_classified_fraction with detected water fractions. Values below 1 indicate partial coverage. Some district estimates use very few pixels.",
+    "This is a retrospective benchmark. Same-month weather, annual maps and revised sources may be unavailable at forecast time. Validate reporting lags before forecasting."
+  ],
+  "related_paper": "https://www.nature.com/articles/s43856-026-01681-9",
+  "district_crosswalk_source": "https://github.com/Mte2112/climalmal-2025/blob/75774e57362ad4382f806bd1cdca53c6c63984e8/data/shapefiles.tar.gz",
+  "crosswalk_method": "ID_1/NAME_1 from authors' MWI_adm1.shp; exact name join to geoBoundaries. Authors' geometries are not redistributed."
+}
