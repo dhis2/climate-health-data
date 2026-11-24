@@ -26,6 +26,14 @@
       "surface_water": "EC JRC/Google. Pekel et al. (2016), High-resolution mapping of global surface water and its long-term changes, https://doi.org/10.1038/nature20584.",
       "vegetation": "MOD13A3.061, https://doi.org/10.5067/MODIS/MOD13A3.061.",
       "land_cover": "MCD12Q1.061, https://doi.org/10.5067/MODIS/MCD12Q1.061."
+    },
+    "source_attributions": {
+      "era5_land": {
+        "applies_to": "All fields sourced from ECMWF/ERA5_LAND/MONTHLY_AGGR, including derived relative humidity.",
+        "notice": "Contains modified Copernicus Climate Change Service information (2005-2023).",
+        "disclaimer": "The European Commission and ECMWF are not responsible for uses of the Copernicus data in this bundle.",
+        "license_url": "https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products"
+      }
     }
   },
   "fields": [
@@ -142,6 +150,8 @@
         "provider": "UCSB CHC",
         "url": "https://www.chc.ucsb.edu/data/chirps3",
         "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_note": "The provider's v3 page states CC BY 4.0 alongside a public-domain waiver. Attribution is retained.",
         "data_source_id": "chirps3_precipitation_monthly"
       }
     },
